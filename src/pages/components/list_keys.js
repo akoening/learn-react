@@ -7,6 +7,8 @@ const people = [
 ];
 
 export default function List() {
+  // Keys should NOT be an index but should be unique
+  // Should not use a random number
   const listItems = people.map((person, index) =>
     <li key={index}>{person}</li>
   );

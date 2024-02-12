@@ -7,6 +7,8 @@ const people = [
 ];
 
 export default function List() {
+  // Creating reusable component that can render a list of items 
+  // Need to add a unique key prop to every item, otherwise React can't tell which item is which
   const listItems = people.map(person =>
     <li>{person}</li>
   );
