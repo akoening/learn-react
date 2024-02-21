@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 let nextId = 3;
 const initialList = [
+  // Array of objects: copy of array will have pointers to the same objects
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
   { id: 2, title: 'Terracotta Army', seen: true },
@@ -10,25 +11,28 @@ const initialList = [
 export default function BucketList() {
   const [myList, setMyList] = useState(initialList);
   const [yourList, setYourList] = useState(
-    initialList
+    initialList.map((item) => {
+      // Deep copy, expensive operation
+      return {...item};
+    })
   );
 
   function handleToggleMyList(artworkId, nextSeen) {
     const tmpList = myList.map(e => {
         if (e.id === artworkId) {
-            e.seen = nextSeen
+          return {...e, seen: nextSeen};
         }
-        return e
+        //return e
     });
     setMyList(tmpList);
   }
-
   function handleToggleYourList(artworkId, nextSeen) {
     const tmpList = yourList.map(e => {
         if (e.id === artworkId) {
-            e.seen = nextSeen
+           // e.seen = nextSeen: delinking lists
+           return {...e, seen: nextSeen};
         }
-        return e
+        //return e
     });
     setYourList(tmpList);
   }
