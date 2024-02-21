@@ -10,19 +10,19 @@ const initialList = [
 
 export default function BucketList() {
   const [myList, setMyList] = useState(initialList);
-  const [yourList, setYourList] = useState(
-    initialList.map((item) => {
+  const [yourList, setYourList] = useState(initialList);
+    //initialList.map((item) => {
       // Deep copy, expensive operation
-      return {...item};
-    })
-  );
+      //return {...item};
+    //})
+  ;
 
   function handleToggleMyList(artworkId, nextSeen) {
     const tmpList = myList.map(e => {
         if (e.id === artworkId) {
           return {...e, seen: nextSeen};
         }
-        //return e
+        return e;
     });
     setMyList(tmpList);
   }
@@ -32,7 +32,7 @@ export default function BucketList() {
            // e.seen = nextSeen: delinking lists
            return {...e, seen: nextSeen};
         }
-        //return e
+        return e;
     });
     setYourList(tmpList);
   }
